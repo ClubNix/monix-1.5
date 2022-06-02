@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 import { generateFakeProducts } from '../utils';
-import { Member, Product } from './types'
+import { Product } from './types'
 
 /** State contenant toutes les informations liés aux produits */
 interface ProductState {

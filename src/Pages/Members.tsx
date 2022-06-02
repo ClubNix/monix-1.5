@@ -2,7 +2,6 @@ import { Box } from "@mui/system";
 import MembersTable from "../Components/MemberTable";
 import { useAppSelector } from "../hook";
 import { membersSelector } from "../Model/MembersSlice";
-import { generateFakeMembers } from "../utils";
 
 const MembersPage = () => {
   const members = useAppSelector(membersSelector);
