@@ -34,9 +34,11 @@ const CataloguePage = () => {
           marginTop: "20px",
         }}
       >
-        {products.map((product) => (
-          <ProductCard product={product} key={`product-${product.id}`} />
-        ))}
+        {products
+          .filter((product) => product.name.includes(productFilter))
+          .map((product) => (
+            <ProductCard product={product} key={`product-${product.id}`} />
+          ))}
       </Box>
     </>
   );
