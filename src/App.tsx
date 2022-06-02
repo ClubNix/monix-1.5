@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import "./App.css";
 import NixBar from "./Components/NixBar";
 import NixTabs from "./Components/NixTabs";
 import CataloguePage from "./Pages/Catalogue";
