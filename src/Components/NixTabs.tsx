@@ -1,8 +1,8 @@
 import { Box, Tabs, Tab } from "@mui/material";
 
 export type NixTabsProps = {
-  tabs: { [tabId: string]: React.ReactNode };
-  selectedTab: string;
+  tabs: string[];
+  selectedTab: string | boolean;
   tabChange: (event: any, tabIndex: any) => void;
 };
 
@@ -16,12 +16,11 @@ const NixTabs = ({ tabs, selectedTab, tabChange }: NixTabsProps) => {
           onChange={tabChange}
           centered
         >
-          {Object.keys(tabs).map((key, index) => (
-            <Tab key={`tab-${index}`} label={key} value={key} />
+          {tabs.map((tab) => (
+            <Tab key={`tab-${tab}`} label={tab} value={tab} />
           ))}
         </Tabs>
       </Box>
-      {tabs[selectedTab]}
     </>
   );
 };
