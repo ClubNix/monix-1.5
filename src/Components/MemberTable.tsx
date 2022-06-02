@@ -50,10 +50,10 @@ const MembersTable = ({ members }: MembersTableProps) => {
             <TableBody>
               {members
                 .filter((member) => member.pseudo.includes(memberFilter))
-                .map(({ id, pseudo, balance }) => (
+                .map(({ id, avatar, pseudo, balance }) => (
                   <TableRow key={`row-member-${id}`}>
                     <TableCell>
-                      <Avatar>{pseudo[0]}</Avatar>
+                      <Avatar src={avatar} />
                     </TableCell>
                     <TableCell>{pseudo}</TableCell>
                     <TableCell>

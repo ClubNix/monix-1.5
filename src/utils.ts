@@ -7,6 +7,7 @@ export const generateFakeMembers = (nb: number) => {
   for (let i = 0; i < nb; i++)
     members.push({
       id: i,
+      avatar: faker.internet.avatar(),
       pseudo: faker.name.firstName(),
       balance: Number(faker.finance.amount(-100, 100, 1)),
     });
