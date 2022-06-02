@@ -1,4 +1,4 @@
-import { Member } from "./Model/types";
+import { Member, Product } from "./Model/types";
 import { faker } from "@faker-js/faker";
 
 export const generateFakeMembers = (nb: number) => {
@@ -13,4 +13,19 @@ export const generateFakeMembers = (nb: number) => {
     });
 
   return members;
+};
+
+export const generateFakeProducts = (nb: number) => {
+  const products: Product[] = [];
+
+  for (let i = 0; i < nb; i++)
+    products.push({
+      id: i,
+      image: faker.image.food(),
+      name: faker.commerce.product(),
+      stock: Number(faker.finance.amount(0, 100, 0)),
+      price: Number(faker.commerce.price(0, 4, 1)),
+    });
+
+  return products;
 };
