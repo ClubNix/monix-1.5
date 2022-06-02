@@ -4,13 +4,15 @@ import { useState } from "react";
 import ProductCard from "../Components/ProductCard";
 import { generateFakeProducts } from "../utils";
 import SearchIcon from "@mui/icons-material/Search";
+import { productsSelector } from "../Model/ProductSlice";
+import { useAppSelector } from "../hook";
 
 const CataloguePage = () => {
   const [productFilter, setProductFilter] = useState("");
-  const products = generateFakeProducts(10);
+  const products = useAppSelector(productsSelector);
   return (
     <>
-      <Box sx={{marginLeft:"3vw", marginTop:"10px"}}>
+      <Box sx={{ marginLeft: "3vw", marginTop: "10px" }}>
         <TextField
           placeholder="Nom Produit"
           value={productFilter}
