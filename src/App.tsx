@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import NixBar from "./Components/NixBar";
 import NixTabs from "./Components/NixTabs";
+import MembersPage from "./Pages/Members";
 
 function App() {
   const [currentTab, setCurrentTab] = useState("Membres");
@@ -14,7 +15,7 @@ function App() {
         selectedTab={currentTab}
         tabChange={(evt, val) => setCurrentTab(val)}
         tabs={{
-          Membres: <div>Membres</div>,
+          Membres: <MembersPage />,
           Catalogue: <div>Catalogue</div>,
           Documentation: <div>Documentation</div>,
         }}
