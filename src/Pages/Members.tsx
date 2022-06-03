@@ -1,4 +1,5 @@
 import { Box } from "@mui/system";
+import MemberCard from "../Components/MemberCard";
 import MembersTable from "../Components/MemberTable";
 import { useAppSelector } from "../hook";
 import { membersSelector } from "../Model/MembersSlice";
@@ -16,6 +17,7 @@ const MembersPage = () => {
       }}
     >
       <MembersTable members={members} />
+      <MemberCard />
     </Box>
   );
 };

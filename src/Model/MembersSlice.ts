@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../store'
-import { generateFakeMembers } from '../utils';
-import { Member } from './types'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
+import { generateFakeMembers } from "../utils";
+import { Member } from "./types";
 
 /** State contenant toutes les informations liés aux membres */
 interface MemberState {
@@ -10,29 +10,34 @@ interface MemberState {
 }
 
 const initialState: MemberState = {
-    members: generateFakeMembers(100),
-}
+  members: generateFakeMembers(100),
+};
 
 /** Slice pour la gestion des membres */
 export const memberSlice = createSlice({
-  name: 'members',
+  name: "members",
   initialState,
   reducers: {
     setMembers: (state: MemberState, action: PayloadAction<Member[]>) => {
-      state.members = action.payload
+      state.members = action.payload;
     },
     clearMembers: (state: MemberState) => {
-      state.members = []
+      state.members = [];
     },
-    setSelectedMembers: (state: MemberState, action: PayloadAction<Member>) => {
-      state.selectedMember = action.payload
+    setSelectedMembers: (
+      state: MemberState,
+      action: PayloadAction<Member | undefined>
+    ) => {
+      state.selectedMember = action.payload;
     },
   },
-})
+});
 
-export const { setMembers, clearMembers, setSelectedMembers } = memberSlice.actions
+export const { setMembers, clearMembers, setSelectedMembers } =
+  memberSlice.actions;
 
 export const membersSelector = (state: RootState) => state.members.members;
-export const selectedMember = (state: RootState) => state.members.selectedMember;
+export const selectedMember = (state: RootState) =>
+  state.members.selectedMember;
 
-export default memberSlice.reducer
+export default memberSlice.reducer;

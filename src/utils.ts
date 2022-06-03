@@ -1,16 +1,26 @@
-import { Member, Product } from "./Model/types";
+import { HistoryEntry, Member, Product } from "./Model/types";
 import { faker } from "@faker-js/faker";
 
 export const generateFakeMembers = (nb: number) => {
   const members: Member[] = [];
 
-  for (let i = 0; i < nb; i++)
+  for (let i = 0; i < nb; i++) {
+    let history: HistoryEntry[] = [];
+    for (let j = 0; j < 20; j++)
+      history.push({
+        id: i * j,
+        date: faker.date.past(),
+        amount: Number(faker.finance.amount(-50, 50, 1)),
+      });
+
     members.push({
       id: i,
       avatar: faker.internet.avatar(),
       pseudo: faker.name.firstName(),
       balance: Number(faker.finance.amount(-100, 100, 1)),
+      history: history,
     });
+  }
 
   return members;
 };

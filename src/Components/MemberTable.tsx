@@ -10,15 +10,19 @@ import {
   Box,
   Avatar,
   TextField,
+  Button,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Member } from "../Model/types";
 import { useState } from "react";
+import { useAppDispatch } from "../hook";
+import { setSelectedMembers } from "../Model/MembersSlice";
 
 export type MembersTableProps = { members: Member[] };
 
 const MembersTable = ({ members }: MembersTableProps) => {
   const [memberFilter, setMemberFilter] = useState("");
+  const dispatch = useAppDispatch();
   return (
     <Box sx={{ width: "80%" }}>
       <TextField
@@ -49,17 +53,23 @@ const MembersTable = ({ members }: MembersTableProps) => {
             <TableBody>
               {members
                 .filter((member) => member.pseudo.includes(memberFilter))
-                .map(({ id, avatar, pseudo, balance }) => (
-                  <TableRow key={`row-member-${id}`}>
+                .map((member) => (
+                  <TableRow key={`row-member-${member.id}`}>
                     <TableCell>
-                      <Avatar src={avatar} />
+                      <Avatar src={member.avatar} />
                     </TableCell>
-                    <TableCell>{pseudo}</TableCell>
+                    <TableCell>{member.pseudo}</TableCell>
                     <TableCell>
-                      <>{balance} MC</>
+                      <>{member.balance} MC</>
                     </TableCell>
                     <TableCell>TODO</TableCell>
-                    <TableCell>TODO</TableCell>
+                    <TableCell>
+                      <Button
+                        onClick={() => dispatch(setSelectedMembers(member))}
+                      >
+                        Voir les détails
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>
