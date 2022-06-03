@@ -13,6 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../hook";
 import {
@@ -20,8 +21,10 @@ import {
   closeBasket,
   isBasketOpenedSelector,
   membersSelector,
+  modifyBasket,
 } from "../Model/MembersSlice";
 import { productsSelector } from "../Model/ProductSlice";
+import { BasketEntry, Product } from "../Model/types";
 import NixModal from "./NixModal";
 
 const Basket = () => {
@@ -30,6 +33,34 @@ const Basket = () => {
   const produits = useSelector(productsSelector);
   const basket = useSelector(basketSelector);
   const dispatch = useAppDispatch();
+
+  const [tmpAmount, setTmpAmount] = useState<BasketEntry[]>([]);
+
+  const addToBasket = (product: Product) => {
+    let amount = getTmpAmountForProduct(product);
+    let newBasket = [...basket]
+    if (amount === 0) return;
+    newBasket.push({ product, amount });
+    dispatch(modifyBasket(newBasket));
+  };
+
+  const setTmpAmountForProduct = (product: Product, amount: number) => {
+    const index = tmpAmount.findIndex((val) => val.product.id === product.id);
+
+    //Si on a pas d'amount déjà set, on l'ajoute pour le produit
+    if (index == -1) tmpAmount.push({ product: product, amount: amount });
+    else tmpAmount[index].amount = amount;
+    setTmpAmount(tmpAmount);
+  };
+
+  const getTmpAmountForProduct = (product: Product) => {
+    const index = tmpAmount.findIndex((val) => val.product.id === product.id);
+
+    //Si on ne trouve pas l'objet, c'est que la quantité est toujours à 1
+    if (index == -1) return 0;
+    return tmpAmount[index].amount;
+  };
+
   return (
     <NixModal
       open={opened}
@@ -72,20 +103,26 @@ const Basket = () => {
             <Table stickyHeader aria-label="Member table">
               <TableHead>
                 <TableRow sx={{ backgroundColor: "black" }}>
-                  <TableCell align="center" colSpan={5}>Panier</TableCell>
+                  <TableCell align="center" colSpan={5}>
+                    Panier
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {basket.map(({product, amount}) => (
+                {basket.map(({ product, amount }) => (
                   <TableRow key={`row-member-${product.id}`}>
                     <TableCell>{product.name}</TableCell>
                     <TableCell>{product.price} MC</TableCell>
                     <TableCell>{product.stock} MC</TableCell>
                     <TableCell>
-                      <Input type="number" value={amount} placeholder="Quantité" />
+                      <Input
+                        type="number"
+                        value={amount}
+                        placeholder="Quantité"
+                      />
                     </TableCell>
                     <TableCell>
-                      <Button>Ajouter au panier</Button>
+                      <Button>Retirer du panier</Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -114,10 +151,21 @@ const Basket = () => {
                     <TableCell>{product.price} MC</TableCell>
                     <TableCell>{product.stock} MC</TableCell>
                     <TableCell>
-                      <Input type="number" placeholder="Quantité" />
+                      <Input
+                        type="number"
+                        placeholder="Quantité"
+                        onChange={(evt) =>
+                          setTmpAmountForProduct(
+                            product,
+                            Number(evt.currentTarget.value)
+                          )
+                        }
+                      />
                     </TableCell>
                     <TableCell>
-                      <Button>Ajouter au panier</Button>
+                      <Button onClick={() => addToBasket(product)}>
+                        Ajouter au panier
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
