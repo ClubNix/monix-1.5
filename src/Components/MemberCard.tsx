@@ -10,7 +10,7 @@ const MemberCard = () => {
   const dispatch = useAppDispatch();
   return (
     <NixModal
-      open={member != undefined}
+      open={member !== undefined}
       onClose={() => dispatch(setSelectedMembers(undefined))}
     >
       <Box sx={{ width: "50%" }}>

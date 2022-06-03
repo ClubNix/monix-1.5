@@ -16,7 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Member } from "../Model/types";
 import { useState } from "react";
 import { useAppDispatch } from "../hook";
-import { setSelectedMembers } from "../Model/MembersSlice";
+import { openBasket, setSelectedMembers } from "../Model/MembersSlice";
 
 export type MembersTableProps = { members: Member[] };
 
@@ -62,7 +62,11 @@ const MembersTable = ({ members }: MembersTableProps) => {
                     <TableCell>
                       <>{member.balance} MC</>
                     </TableCell>
-                    <TableCell>TODO</TableCell>
+                    <TableCell>
+                      <Button onClick={() => dispatch(openBasket())}>
+                        Buy
+                      </Button>
+                    </TableCell>
                     <TableCell>
                       <Button
                         onClick={() => dispatch(setSelectedMembers(member))}

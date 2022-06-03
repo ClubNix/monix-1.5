@@ -5,12 +5,14 @@ import React from "react";
 export type NixModalProps = {
   open: boolean;
   onClose: () => void;
+  size?: { width: string; height: string };
 };
 
 const NixModal = ({
   children,
   open,
   onClose,
+  size,
 }: React.PropsWithChildren<NixModalProps>) => {
   return (
     <Modal open={open} onClose={onClose}>
@@ -20,8 +22,8 @@ const NixModal = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "40%",
-          height: "50%",
+          width: size ? size.width : "40%",
+          height: size ? size.height : "50%",
           bgcolor: "white",
           border: "2px solid #000",
           boxShadow: 24,

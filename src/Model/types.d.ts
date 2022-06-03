@@ -21,3 +21,5 @@ export type Product = {
   price: number;
   stock: number;
 };
+
+export type BasketEntry = { product: Product; amount: number };

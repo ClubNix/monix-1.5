@@ -1,4 +1,5 @@
 import { Box } from "@mui/system";
+import Basket from "../Components/Basket";
 import MemberCard from "../Components/MemberCard";
 import MembersTable from "../Components/MemberTable";
 import { useAppSelector } from "../hook";
@@ -18,6 +19,7 @@ const MembersPage = () => {
     >
       <MembersTable members={members} />
       <MemberCard />
+      <Basket />
     </Box>
   );
 };
