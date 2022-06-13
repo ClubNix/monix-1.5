@@ -35,6 +35,7 @@ const MemberCard = () => {
                 p: "3px",
                 margin: "2px",
               }}
+              key={history.id}
             >
               <span>{new Date(history.date).toLocaleDateString()}</span>
               <span>

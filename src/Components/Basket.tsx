@@ -126,7 +126,7 @@ const Basket = () => {
                     </TableCell>
                   </TableRow>
                 ))}
-                {basket.length === 0 && <p>Le panier est vide !</p>}
+                {basket.length === 0 && <TableRow><TableCell colSpan={5} align="center"><strong>Le panier est vide !</strong></TableCell></TableRow>}
               </TableBody>
             </Table>
           </TableContainer>

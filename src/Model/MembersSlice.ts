@@ -13,7 +13,7 @@ interface MemberState {
 }
 
 const initialState: MemberState = {
-  members: generateFakeMembers(100),
+  members: generateFakeMembers(5),
   basketOpened: false,
   basket: [],
 };
