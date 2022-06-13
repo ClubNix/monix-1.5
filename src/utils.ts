@@ -9,7 +9,7 @@ export const generateFakeMembers = (nb: number) => {
     for (let j = 0; j < 20; j++)
       history.push({
         id: i * j,
-        date: faker.date.past(),
+        date: faker.date.past().getTime(),
         amount: Number(faker.finance.amount(-50, 50, 1)),
       });
 

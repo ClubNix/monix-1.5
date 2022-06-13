@@ -36,7 +36,7 @@ const MemberCard = () => {
                 margin: "2px",
               }}
             >
-              <span>{history.date.toLocaleDateString()}</span>
+              <span>{new Date(history.date).toLocaleDateString()}</span>
               <span>
                 {history.amount > 0 ? "+" : ""}
                 {history.amount}

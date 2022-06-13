@@ -1,6 +1,6 @@
 export type HistoryEntry = {
   id: number;
-  date: Date;
+  date: number;
   amount: number;
 };
 
