@@ -29,7 +29,7 @@ const App = () => {
 
   useEffect(() => {
     setCurrentTab(findAssociatedTab(location.pathname));
-  }, []);
+  }, [location.pathname]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

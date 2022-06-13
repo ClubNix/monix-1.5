@@ -1,6 +1,5 @@
 import {
   Autocomplete,
-  Avatar,
   Box,
   Button,
   Input,
@@ -11,9 +10,8 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../hook";
 import {
@@ -36,28 +34,76 @@ const Basket = () => {
 
   const [tmpAmount, setTmpAmount] = useState<BasketEntry[]>([]);
 
+  useEffect(() => {
+    //seulement au mount du composant
+    const newTmpAmounts: BasketEntry[] = []
+    for(const product of produits) {
+      newTmpAmounts.push({product, amount: 1})
+    }
+    setTmpAmount(newTmpAmounts);
+  }, [produits])
+  
+
   const addToBasket = (product: Product) => {
+    const index = basket.findIndex((val) => val.product.id === product.id);
     let amount = getTmpAmountForProduct(product);
-    let newBasket = [...basket]
-    if (amount === 0) return;
-    newBasket.push({ product, amount });
+    let newBasket = [...basket];
+
+    //TODO: Mettre en place des messages d'erreurs (Feedback utilisateur)
+    if (amount === 0 || amount > product.stock) return;
+
+    //Si l'objet est déjà dans le basket, on met juste à jour son amount
+    if (index !== -1){
+      const { amount: oldAmount } = newBasket[index]
+
+      //TODO: Mettre en place des messages d'erreurs (Feedback utilisateur)
+      if(amount + oldAmount > product.stock) return;
+      newBasket[index] = { ...newBasket[index], amount: oldAmount + amount };
+    } 
+    else newBasket.push({ product, amount });
     dispatch(modifyBasket(newBasket));
+  };
+
+  const removeFromBasket = (product: Product) => {
+    let newBasket = [...basket];
+    const index = newBasket.findIndex((val) => val.product.id === product.id);
+    console.log(newBasket)
+    delete newBasket[index];
+    console.log(newBasket)
+
+    dispatch(modifyBasket(newBasket));
+  };
+
+  const updateBasketAmount = (product: Product, amount: number) => {
+    const index = basket.findIndex((val) => val.product.id === product.id);
+    let newBasket = [...basket]
+
+
+    if(amount > product.stock) return;
+    const newbasketEntry: BasketEntry = {...tmpAmount[index], amount}
+    newBasket[index] = newbasketEntry;
+
+    dispatch(modifyBasket(newBasket))
   };
 
   const setTmpAmountForProduct = (product: Product, amount: number) => {
     const index = tmpAmount.findIndex((val) => val.product.id === product.id);
+    let newAmounts = [...tmpAmount]
 
     //Si on a pas d'amount déjà set, on l'ajoute pour le produit
-    if (index == -1) tmpAmount.push({ product: product, amount: amount });
-    else tmpAmount[index].amount = amount;
-    setTmpAmount(tmpAmount);
+    if (index === -1) newAmounts.push({ product: product, amount: amount });
+    else {
+      const newbasketEntry: BasketEntry = {...tmpAmount[index], amount}
+      newAmounts[index] = newbasketEntry;
+    } 
+    setTmpAmount(newAmounts);
   };
 
   const getTmpAmountForProduct = (product: Product) => {
     const index = tmpAmount.findIndex((val) => val.product.id === product.id);
 
     //Si on ne trouve pas l'objet, c'est que la quantité est toujours à 1
-    if (index == -1) return 0;
+    if (index === -1) return 0;
     return tmpAmount[index].amount;
   };
 
@@ -112,21 +158,33 @@ const Basket = () => {
                 {basket.map(({ product, amount }) => (
                   <TableRow key={`row-member-${product.id}`}>
                     <TableCell>{product.name}</TableCell>
-                    <TableCell>{product.price} MC</TableCell>
-                    <TableCell>{product.stock} MC</TableCell>
+                    <TableCell>{product.price * amount} MC</TableCell>
                     <TableCell>
                       <Input
                         type="number"
                         value={amount}
+                        inputProps={{min: 1}}
                         placeholder="Quantité"
+                        onChange={(evt) =>
+                          updateBasketAmount(
+                            product,
+                            Number(evt.currentTarget.value)
+                          )
+                        }
                       />
                     </TableCell>
                     <TableCell>
-                      <Button>Retirer du panier</Button>
+                      <Button onClick={() => removeFromBasket(product)}>Retirer du panier</Button>
                     </TableCell>
                   </TableRow>
                 ))}
-                {basket.length === 0 && <TableRow><TableCell colSpan={5} align="center"><strong>Le panier est vide !</strong></TableCell></TableRow>}
+                {basket.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={5} align="center">
+                      <strong>Le panier est vide !</strong>
+                    </TableCell>
+                  </TableRow>
+                )}
               </TableBody>
             </Table>
           </TableContainer>
@@ -149,11 +207,12 @@ const Basket = () => {
                   <TableRow key={`row-member-${product.id}`}>
                     <TableCell>{product.name}</TableCell>
                     <TableCell>{product.price} MC</TableCell>
-                    <TableCell>{product.stock} MC</TableCell>
+                    <TableCell>{product.stock}</TableCell>
                     <TableCell>
                       <Input
                         type="number"
                         placeholder="Quantité"
+                        value={getTmpAmountForProduct(product)}
                         onChange={(evt) =>
                           setTmpAmountForProduct(
                             product,
