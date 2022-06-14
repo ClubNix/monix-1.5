@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NixBar from "./Components/NixBar";
 import NixTabs from "./Components/NixTabs";
+import Admin from "./Pages/Admin";
 import CataloguePage from "./Pages/Catalogue";
 import MembersPage from "./Pages/Members";
 
@@ -34,19 +35,28 @@ const App = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <NixBar />
-      <NixTabs
-        tabs={Object.keys(configuredTabs)}
-        selectedTab={currentTab?currentTab:false}
-        tabChange={(evt, val) => {
-          setCurrentTab(val);
-          navigate(configuredTabs[val]);
-        } }
-      />
+      {location.pathname !== "/admin" && (
+        <NixTabs
+          tabs={Object.keys(configuredTabs)}
+          selectedTab={currentTab ? currentTab : false}
+          tabChange={(evt, val) => {
+            setCurrentTab(val);
+            navigate(configuredTabs[val]);
+          }}
+        />
+      )}
       <Routes>
-        <Route path="/" element={(<div>Home Page (TODO)</div>)} />
+        <Route path="/" element={<div>Home Page (TODO)</div>} />
         <Route path="/membres" element={<MembersPage />} />
         <Route path="/catalogue" element={<CataloguePage />} />
-        <Route path="/documentation" element={(<div>Documentation (TODO)</div>)} />
+        <Route
+          path="/documentation"
+          element={<div>Documentation (TODO)</div>}
+        />
+        <Route
+          path="/admin"
+          element={<Admin />}
+        />
       </Routes>
     </Box>
   );
