@@ -5,13 +5,7 @@ export const generateFakeMembers = (nb: number) => {
   const members: Member[] = [];
 
   for (let i = 0; i < nb; i++) {
-    let history: HistoryEntry[] = [];
-    for (let j = 0; j < 20; j++)
-      history.push({
-        id: j,
-        date: faker.date.past().getTime(),
-        amount: Number(faker.finance.amount(-50, 50, 1)),
-      });
+    let history: HistoryEntry[] = generateFakeHistory(10);
 
     members.push({
       id: i,
@@ -38,4 +32,17 @@ export const generateFakeProducts = (nb: number) => {
     });
 
   return products;
+};
+
+export const generateFakeHistory = (nb: number) => {
+  const history: HistoryEntry[] = [];
+
+  for (let i = 0; i < nb; i++)
+    history.push({
+      id: i,
+      date: faker.date.past().getTime(),
+      amount: Number(faker.finance.amount(-50, 50, 1)),
+    });
+
+  return history;
 };

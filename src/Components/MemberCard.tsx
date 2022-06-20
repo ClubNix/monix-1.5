@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../hook";
 import { selectedMember, setSelectedMembers } from "../Model/MembersSlice";
+import HistoryTab from "./HistoryTab";
 import NixModal from "./NixModal";
 
 const MemberCard = () => {
@@ -15,36 +16,7 @@ const MemberCard = () => {
     >
       <Box sx={{ width: "50%" }}>
         <Typography>Historique des Transactions</Typography>
-        <Box
-          sx={{
-            border: "2px solid black",
-            overflowY: "scroll",
-            height: "90%",
-            margin: "10px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          {member?.history.map((history) => (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                border: "2px solid black",
-                p: "3px",
-                margin: "2px",
-              }}
-              key={history.id}
-            >
-              <span>{new Date(history.date).toLocaleDateString()}</span>
-              <span>
-                {history.amount > 0 ? "+" : ""}
-                {history.amount}
-              </span>
-            </Box>
-          ))}
-        </Box>
+        <HistoryTab history={member?.history || []} />
       </Box>
       <Box
         sx={{
