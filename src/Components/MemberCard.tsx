@@ -1,7 +1,12 @@
-import { Avatar, Button, Switch, Typography } from "@mui/material";
+import { Avatar, Button, Input, Switch, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useAppDispatch } from "../hook";
-import { setSelectedMembers } from "../Model/MembersSlice";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../hook";
+import {
+  membersSelector,
+  setMembers,
+  setSelectedMembers,
+} from "../Model/MembersSlice";
 import { Member } from "../Model/types";
 import HistoryTab from "./HistoryTab";
 import NixModal from "./NixModal";
@@ -9,15 +14,47 @@ import NixModal from "./NixModal";
 export type MemberCardProps = {
   member?: Member;
   editmode?: boolean;
+  callback?: (modifiedmember: Member) => void;
 };
 
-const MemberCard = ({ member, editmode }: MemberCardProps) => {
+const MemberCard = ({ member, editmode, callback }: MemberCardProps) => {
   const dispatch = useAppDispatch();
+  const members = useAppSelector(membersSelector);
+  const [modifiedMember, setModifiedMember] = useState(member);
+
+  useEffect(() => {
+    setModifiedMember(member);
+  }, [member]);
+
   return (
     <NixModal
       open={member !== undefined}
-      onClose={() => dispatch(setSelectedMembers(undefined))}
+      onClose={() => {
+        dispatch(setSelectedMembers(undefined));
+        if (callback && modifiedMember) callback(modifiedMember);
+      }}
     >
+      {editmode && (
+        <Button
+          sx={{ position: "absolute", right: "20px" }}
+          color="error"
+          variant="contained"
+          onClick={() => {
+            //TODO: Gestion de la suppression du membre
+            //On supprime du store redux
+            const index = members.findIndex(
+              (mmb) => mmb.id === modifiedMember?.id
+            );
+            const newMembers = [...members];
+            newMembers.splice(index, 1);
+            dispatch(setMembers(newMembers));
+
+            dispatch(setSelectedMembers(undefined));
+          }}
+        >
+          Supprimer le membre
+        </Button>
+      )}
       <Box sx={{ width: "50%" }}>
         <Typography>Historique des Transactions</Typography>
         <HistoryTab history={member?.history || []} />
@@ -26,8 +63,8 @@ const MemberCard = ({ member, editmode }: MemberCardProps) => {
         sx={{
           width: "50%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          flexDirection: editmode ? "row" : "column",
+          justifyContent: editmode ? "center" : "space-between",
           alignItems: "center",
         }}
       >
@@ -38,15 +75,36 @@ const MemberCard = ({ member, editmode }: MemberCardProps) => {
             alignItems: "center",
           }}
         >
+          {/** TODO: Faire la gestion d'image en mode edit */}
           <Avatar src={member?.avatar} sx={{ width: 96, height: 96 }} />
-          <Typography variant="h3">{member?.pseudo}</Typography>
+          {editmode ? (
+            <Input
+              value={modifiedMember?.pseudo}
+              inputProps={{
+                style: { textAlign: "center", fontWeight: "bold" },
+              }}
+              onChange={(evt) =>
+                setModifiedMember({
+                  ...modifiedMember,
+                  pseudo: evt.currentTarget.value,
+                } as Member)
+              }
+            />
+          ) : (
+            <Typography variant="h3">{member?.pseudo}</Typography>
+          )}
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          {/** TODO: Faire en sorte que ce bordel sert à quelque chose */}
-          <Typography>Vérification par code</Typography>
-          <Switch defaultChecked />
-        </Box>
-        <Button variant="contained">Code</Button>
+
+        {!editmode && (
+          <>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              {/** TODO: Faire en sorte que ce bordel sert à quelque chose */}
+              <Typography>Vérification par code</Typography>
+              <Switch defaultChecked />
+            </Box>
+            <Button variant="contained">Code</Button>
+          </>
+        )}
       </Box>
     </NixModal>
   );
