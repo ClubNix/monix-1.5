@@ -1,10 +1,12 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../hook";
 import { globalHistorySelector } from "../Model/AdminSlice";
 import HistoryTab from "./HistoryTab";
 
 const AdminWelcome = () => {
   const history = useAppSelector(globalHistorySelector);
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -26,7 +28,11 @@ const AdminWelcome = () => {
             height: "100%",
           }}
         >
-          <Button variant="contained" sx={{ margin: "10px", height: "75px" }}>
+          <Button
+            variant="contained"
+            sx={{ margin: "10px", height: "75px" }}
+            onClick={() => navigate("/admin/membres")}
+          >
             Membres
           </Button>
           <Button variant="contained" sx={{ margin: "10px", height: "75px" }}>

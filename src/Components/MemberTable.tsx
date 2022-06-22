@@ -18,26 +18,41 @@ import { useState } from "react";
 import { useAppDispatch } from "../hook";
 import { openBasket, setSelectedMembers } from "../Model/MembersSlice";
 
-export type MembersTableProps = { members: Member[] };
+export type MembersTableProps = { members: Member[]; editmode?: boolean };
 
-const MembersTable = ({ members }: MembersTableProps) => {
+const MembersTable = ({ members, editmode }: MembersTableProps) => {
   const [memberFilter, setMemberFilter] = useState("");
   const dispatch = useAppDispatch();
   return (
     <Box sx={{ width: "80%" }}>
-      <TextField
-        sx={{ marginBottom: "20px" }}
-        placeholder="Membre"
-        value={memberFilter}
-        onChange={(evt) => setMemberFilter(evt.currentTarget.value)}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
-      />
+      >
+        <TextField
+          sx={{ marginBottom: "20px" }}
+          placeholder="Membre"
+          value={memberFilter}
+          onChange={(evt) => setMemberFilter(evt.currentTarget.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        {editmode && (
+          <Button variant="contained" sx={{ height: "100%" }}>
+            Ajouter un membre
+          </Button>
+        )}
+      </Box>
+
       <Paper sx={{ overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: "60vh" }}>
           <Table stickyHeader aria-label="Member table">
@@ -46,8 +61,13 @@ const MembersTable = ({ members }: MembersTableProps) => {
                 <TableCell></TableCell>
                 <TableCell>Pseudo</TableCell>
                 <TableCell>Crédits</TableCell>
-                <TableCell>Dépot / Achat</TableCell>
-                <TableCell>Profil</TableCell>
+                {!editmode && (
+                  <>
+                    <TableCell>Dépot / Achat</TableCell>
+                    <TableCell>Profil</TableCell>
+                  </>
+                )}
+                {editmode && <TableCell>Modifier le membre</TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -62,18 +82,33 @@ const MembersTable = ({ members }: MembersTableProps) => {
                     <TableCell>
                       <>{member.balance} MC</>
                     </TableCell>
-                    <TableCell>
-                      <Button onClick={() => dispatch(openBasket())}>
-                        Buy
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        onClick={() => dispatch(setSelectedMembers(member))}
-                      >
-                        Voir les détails
-                      </Button>
-                    </TableCell>
+                    {!editmode && (
+                      <>
+                        <TableCell>
+                          <Button onClick={() => dispatch(openBasket())}>
+                            Buy
+                          </Button>
+                        </TableCell>
+
+                        <TableCell>
+                          <Button
+                            onClick={() => dispatch(setSelectedMembers(member))}
+                          >
+                            Voir les détails
+                          </Button>
+                        </TableCell>
+                      </>
+                    )}
+                    {editmode && (
+                      <TableCell>
+                        <Button
+                          onClick={() => dispatch(setSelectedMembers(member))}
+                          color="warning"
+                        >
+                          Modifier
+                        </Button>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
             </TableBody>

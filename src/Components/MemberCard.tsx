@@ -1,13 +1,17 @@
 import { Avatar, Button, Switch, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "../hook";
-import { selectedMember, setSelectedMembers } from "../Model/MembersSlice";
+import { setSelectedMembers } from "../Model/MembersSlice";
+import { Member } from "../Model/types";
 import HistoryTab from "./HistoryTab";
 import NixModal from "./NixModal";
 
-const MemberCard = () => {
-  const member = useSelector(selectedMember);
+export type MemberCardProps = {
+  member?: Member;
+  editmode?: boolean;
+};
+
+const MemberCard = ({ member, editmode }: MemberCardProps) => {
   const dispatch = useAppDispatch();
   return (
     <NixModal

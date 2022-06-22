@@ -1,11 +1,10 @@
 import { Box } from "@mui/system";
-import Basket from "../Components/Basket";
 import MemberCard from "../Components/MemberCard";
 import MembersTable from "../Components/MemberTable";
 import { useAppSelector } from "../hook";
 import { membersSelector, selectedMember } from "../Model/MembersSlice";
 
-const MembersPage = () => {
+const AdminMembersPage = () => {
   const members = useAppSelector(membersSelector);
   const member = useAppSelector(selectedMember);
   return (
@@ -18,11 +17,10 @@ const MembersPage = () => {
         marginTop: "20px",
       }}
     >
-      <MembersTable members={members} />
-      <MemberCard member={member} />
-      <Basket />
+      <MembersTable members={members} editmode />
+      <MemberCard member={member} editmode />
     </Box>
   );
 };
 
-export default MembersPage;
+export default AdminMembersPage;
