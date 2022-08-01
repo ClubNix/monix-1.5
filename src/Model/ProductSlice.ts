@@ -24,7 +24,7 @@ export const productSlice = createSlice({
     clearProducts: (state: ProductState) => {
       state.products = []
     },
-    setSelectedProduct: (state: ProductState, action: PayloadAction<Product>) => {
+    setSelectedProduct: (state: ProductState, action: PayloadAction<Product|undefined>) => {
       state.selectedProduct = action.payload
     },
   },

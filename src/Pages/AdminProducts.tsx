@@ -18,8 +18,10 @@ import { useAppDispatch, useAppSelector } from "../hook";
 import {
   productsSelector,
   selectedProduct as selectedProductSelector,
+  setProducts,
   setSelectedProduct,
 } from "../Model/ProductSlice";
+import ProductModal from "../Components/ProductModal";
 
 const AdminProductPage = () => {
   const dispatch = useAppDispatch();
@@ -101,6 +103,19 @@ const AdminProductPage = () => {
           </TableContainer>
         </Paper>
       </Box>
+      <ProductModal
+        product={selectedProduct}
+        callback={(modfiedProduct) => {
+          //TODO: Modification niveau backend
+          //Modification dans le store
+          const index = products.findIndex(
+            (prd) => prd.id === modfiedProduct?.id
+          );
+          const newMembers = [...products];
+          newMembers[index] = modfiedProduct;
+          dispatch(setProducts(newMembers));
+        }}
+      />
     </Box>
   );
 };
