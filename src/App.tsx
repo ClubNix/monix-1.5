@@ -5,6 +5,7 @@ import NixBar from "./Components/NixBar";
 import NixTabs from "./Components/NixTabs";
 import Admin from "./Pages/Admin";
 import AdminMembersPage from "./Pages/AdminMembers";
+import AdminProductPage from "./Pages/AdminProducts";
 import CataloguePage from "./Pages/Catalogue";
 import MembersPage from "./Pages/Members";
 
@@ -56,6 +57,7 @@ const App = () => {
         />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/membres" element={<AdminMembersPage />} />
+        <Route path="/admin/products" element={<AdminProductPage />} />
       </Routes>
     </Box>
   );

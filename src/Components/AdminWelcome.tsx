@@ -35,7 +35,11 @@ const AdminWelcome = () => {
           >
             Membres
           </Button>
-          <Button variant="contained" sx={{ margin: "10px", height: "75px" }}>
+          <Button
+            variant="contained"
+            sx={{ margin: "10px", height: "75px" }}
+            onClick={() => navigate("/admin/products")}
+          >
             Produits
           </Button>
           <Button variant="contained" sx={{ margin: "10px", height: "75px" }}>
