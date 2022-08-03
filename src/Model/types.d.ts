@@ -5,7 +5,7 @@ export type HistoryEntry = {
 };
 
 export type Member = {
-  id: number;
+  id?: number;
   /** Donnée en Base64 */
   avatar: string;
   pseudo: string;
@@ -14,7 +14,7 @@ export type Member = {
 };
 
 export type Product = {
-  id: number;
+  id?: number;
   /** Donnée en Base64 */
   image: string;
   name: string;

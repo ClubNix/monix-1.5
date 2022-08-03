@@ -22,6 +22,7 @@ import {
   setSelectedProduct,
 } from "../Model/ProductSlice";
 import ProductModal from "../Components/ProductModal";
+import { createEmptyProduct } from "../utils";
 
 const AdminProductPage = () => {
   const dispatch = useAppDispatch();
@@ -61,7 +62,11 @@ const AdminProductPage = () => {
             }}
           />
 
-          <Button variant="contained" sx={{ height: "100%" }}>
+          <Button
+            variant="contained"
+            sx={{ height: "100%" }}
+            onClick={() => dispatch(setSelectedProduct(createEmptyProduct()))}
+          >
             Ajouter un produit
           </Button>
         </Box>
@@ -107,13 +112,19 @@ const AdminProductPage = () => {
         product={selectedProduct}
         callback={(modfiedProduct) => {
           //TODO: Modification niveau backend
-          //Modification dans le store
-          const index = products.findIndex(
-            (prd) => prd.id === modfiedProduct?.id
-          );
-          const newMembers = [...products];
-          newMembers[index] = modfiedProduct;
-          dispatch(setProducts(newMembers));
+          if (modfiedProduct.id !== undefined) {
+            //Modification dans le store
+            const index = products.findIndex(
+              (prd) => prd.id === modfiedProduct?.id
+            );
+            const newProducts = [...products];
+            newProducts[index] = modfiedProduct;
+            dispatch(setProducts(newProducts));
+          } else {
+            //On ajoute le nouveau produit
+            const newProducts = [...products, modfiedProduct];
+            dispatch(setProducts(newProducts));
+          }
         }}
       />
     </Box>

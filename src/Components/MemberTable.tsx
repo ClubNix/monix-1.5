@@ -17,6 +17,7 @@ import { Member } from "../Model/types";
 import { useState } from "react";
 import { useAppDispatch } from "../hook";
 import { openBasket, setSelectedMembers } from "../Model/MembersSlice";
+import { createEmptyMember } from "../utils";
 
 export type MembersTableProps = { members: Member[]; editmode?: boolean };
 
@@ -47,7 +48,11 @@ const MembersTable = ({ members, editmode }: MembersTableProps) => {
           }}
         />
         {editmode && (
-          <Button variant="contained" sx={{ height: "100%" }}>
+          <Button
+            variant="contained"
+            sx={{ height: "100%" }}
+            onClick={() => dispatch(setSelectedMembers(createEmptyMember()))}
+          >
             Ajouter un membre
           </Button>
         )}

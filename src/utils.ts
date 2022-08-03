@@ -46,3 +46,17 @@ export const generateFakeHistory = (nb: number) => {
 
   return history;
 };
+
+export const createEmptyProduct: () => Product = () => ({
+  image: "https://via.placeholder.com/150",
+  name: "",
+  price: 0,
+  stock: 0,
+});
+
+export const createEmptyMember: () => Member = () => ({
+  avatar: "https://via.placeholder.com/150",
+  balance: 0,
+  history: [],
+  pseudo: "",
+});
