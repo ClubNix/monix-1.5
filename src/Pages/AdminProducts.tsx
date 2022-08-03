@@ -49,7 +49,7 @@ const AdminProductPage = () => {
         >
           <TextField
             sx={{ marginBottom: "20px" }}
-            placeholder="Membre"
+            placeholder="Produit"
             value={productFilter}
             onChange={(evt) => setProductFilter(evt.currentTarget.value)}
             InputProps={{
@@ -62,7 +62,7 @@ const AdminProductPage = () => {
           />
 
           <Button variant="contained" sx={{ height: "100%" }}>
-            Ajouter un membre
+            Ajouter un produit
           </Button>
         </Box>
 
@@ -74,7 +74,7 @@ const AdminProductPage = () => {
                   <TableCell>Nom</TableCell>
                   <TableCell>Prix</TableCell>
                   <TableCell>Stocks</TableCell>
-                  <TableCell>Modifier le membre</TableCell>
+                  <TableCell>Modifier le produit</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

@@ -1,8 +1,7 @@
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hook";
-import { setSelectedMembers } from "../Model/MembersSlice";
 import {
   productsSelector,
   setProducts,
@@ -13,7 +12,7 @@ import NixModal from "./NixModal";
 
 export type ProductModalProps = {
   product?: Product;
-  callback?: (modifiedmember: Product) => void;
+  callback?: (modifiedProduct: Product) => void;
 };
 
 const ProductModal = ({ product, callback }: ProductModalProps) => {
@@ -38,7 +37,7 @@ const ProductModal = ({ product, callback }: ProductModalProps) => {
         color="error"
         variant="contained"
         onClick={() => {
-          //TODO: Gestion de la suppression du membre
+          //TODO: Gestion de la suppression du produit
           //On supprime du store redux
           const index = products.findIndex(
             (mmb) => mmb.id === modifiedProduct?.id
@@ -57,7 +56,7 @@ const ProductModal = ({ product, callback }: ProductModalProps) => {
           width: "100%",
           display: "flex",
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
         }}
       >
@@ -66,14 +65,62 @@ const ProductModal = ({ product, callback }: ProductModalProps) => {
           style={{ width: "50%", margin: "10px" }}
           alt={`Produit '${product?.name}'`}
         />
-        <Box sx={{ margin: "10px" }}>
-          <h2>{product?.name}</h2>
-          <p>
-            <b>Stock:</b> {product?.stock}
-          </p>
-          <p>
-            <b>Prix:</b> {product?.price}
-          </p>
+        <Box
+          sx={{
+            margin: "10px",
+            padding: "10px",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <TextField
+            value={modifiedProduct?.name}
+            variant="standard"
+            margin="normal"
+            inputProps={{
+              style: { textAlign: "center", fontWeight: "bold" },
+            }}
+            onChange={(evt) =>
+              setModifiedProduct({
+                ...modifiedProduct,
+                name: evt.currentTarget.value,
+              } as Product)
+            }
+          />
+          <br />
+          <TextField
+            value={modifiedProduct?.stock}
+            type="number"
+            margin="normal"
+            variant="standard"
+            inputProps={{
+              style: { textAlign: "center" },
+            }}
+            onChange={(evt) => {
+              console.log("Update value", evt.currentTarget.value);
+              setModifiedProduct({
+                ...modifiedProduct,
+                stock: parseInt(evt.currentTarget.value),
+              } as Product);
+            }}
+          />
+          <br />
+          <TextField
+            value={modifiedProduct?.price}
+            type="number"
+            margin="normal"
+            variant="standard"
+            inputProps={{
+              style: { textAlign: "center" },
+            }}
+            onChange={(evt) =>
+              setModifiedProduct({
+                ...modifiedProduct,
+                price: parseFloat(evt.currentTarget.value),
+              } as Product)
+            }
+          />
         </Box>
       </Box>
     </NixModal>
