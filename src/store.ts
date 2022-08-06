@@ -3,6 +3,7 @@ import AdminSlice from "./Model/AdminSlice";
 import MembersSlice from "./Model/MembersSlice";
 import ProductSlice from "./Model/ProductSlice";
 
+/** Racine du store redux, on y définit le schéma global  */
 const store = configureStore({
   reducer: {
     members: MembersSlice,

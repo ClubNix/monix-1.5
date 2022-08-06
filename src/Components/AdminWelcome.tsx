@@ -4,6 +4,7 @@ import { useAppSelector } from "../hook";
 import { globalHistorySelector } from "../Model/AdminSlice";
 import HistoryTab from "./HistoryTab";
 
+/** Composant pour l'affichage de la page d'accueil */
 const AdminWelcome = () => {
   const history = useAppSelector(globalHistorySelector);
   const navigate = useNavigate();

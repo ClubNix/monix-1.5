@@ -8,6 +8,7 @@ import {
   setMembers,
 } from "../Model/MembersSlice";
 
+/** Page de gestion administrative des membres */
 const AdminMembersPage = () => {
   const dispatch = useAppDispatch();
   const members = useAppSelector(membersSelector);
@@ -22,7 +23,9 @@ const AdminMembersPage = () => {
         marginTop: "20px",
       }}
     >
+      {/* Tableau des membres */}
       <MembersTable members={members} editmode />
+      {/* Si un membre est selectionné, il est affiché via ce composant (modal) */}
       <MemberCard
         member={member}
         editmode

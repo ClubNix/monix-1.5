@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { productsSelector } from "../Model/ProductSlice";
 import { useAppSelector } from "../hook";
 
+/** Page afin d'afficher les différents produits ainsi que leur informations */
 const CataloguePage = () => {
   const [productFilter, setProductFilter] = useState("");
   const products = useAppSelector(productsSelector);

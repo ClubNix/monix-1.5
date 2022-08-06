@@ -12,7 +12,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    {/* Provider pour le store Redux */}
     <Provider store={store}>
+      {/* Pour la gestion des routes */}
       <BrowserRouter>
         <App />
       </BrowserRouter>

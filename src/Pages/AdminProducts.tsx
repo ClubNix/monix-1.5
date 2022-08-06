@@ -24,6 +24,7 @@ import {
 import ProductModal from "../Components/ProductModal";
 import { createEmptyProduct } from "../utils";
 
+/** Page de gestion administrative des produits */
 const AdminProductPage = () => {
   const dispatch = useAppDispatch();
   const [productFilter, setProductFilter] = useState("");
@@ -39,6 +40,7 @@ const AdminProductPage = () => {
         marginTop: "20px",
       }}
     >
+      {/* Liste des produits */}
       <Box sx={{ width: "80%" }}>
         <Box
           sx={{
@@ -108,6 +110,7 @@ const AdminProductPage = () => {
           </TableContainer>
         </Paper>
       </Box>
+      {/* Si un produit est selectionné, on l'affiche via le productModal */}
       <ProductModal
         product={selectedProduct}
         callback={(modfiedProduct) => {

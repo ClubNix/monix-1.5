@@ -15,6 +15,7 @@ export type ProductModalProps = {
   callback?: (modifiedProduct: Product) => void;
 };
 
+/** Composant pour l'edition d'un produit */
 const ProductModal = ({ product, callback }: ProductModalProps) => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(productsSelector);

@@ -8,6 +8,7 @@ export type NixModalProps = {
   size?: { width: string; height: string };
 };
 
+/** Wrapper pour un composant Modal */
 const NixModal = ({
   children,
   open,

@@ -17,6 +17,7 @@ export type MemberCardProps = {
   callback?: (modifiedmember: Member) => void;
 };
 
+/** Composant pour afficher les informations d'un membre */
 const MemberCard = ({ member, editmode, callback }: MemberCardProps) => {
   const dispatch = useAppDispatch();
   const members = useAppSelector(membersSelector);

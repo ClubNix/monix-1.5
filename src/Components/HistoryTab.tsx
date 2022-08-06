@@ -5,6 +5,7 @@ export type HistoryTabProps = {
   history: HistoryEntry[];
 };
 
+/** Composant pour afficher l'historique d'un utilisateur */
 const HistoryTab = ({history} : HistoryTabProps) => (
   <Box
     sx={{

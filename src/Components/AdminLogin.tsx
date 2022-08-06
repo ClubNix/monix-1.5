@@ -4,6 +4,7 @@ import { useAppDispatch } from "../hook";
 import { setToken as setTokenReducer } from "../Model/AdminSlice";
 import { setToken } from "../TokenService";
 
+/** Composant pour le login de l'administrateur */
 const AdminLogin = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");

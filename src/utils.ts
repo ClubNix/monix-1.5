@@ -1,6 +1,7 @@
 import { HistoryEntry, Member, Product } from "./Model/types";
 import { faker } from "@faker-js/faker";
 
+/** Fonction utilitaire afin de générer des faux membres, peut être utilisé à des fin de tests comme de placeholder */
 export const generateFakeMembers = (nb: number) => {
   const members: Member[] = [];
 
@@ -19,6 +20,7 @@ export const generateFakeMembers = (nb: number) => {
   return members;
 };
 
+/** Fonction utilitaire afin de générer des faux produits, peut être utilisé à des fin de tests comme de placeholder */
 export const generateFakeProducts = (nb: number) => {
   const products: Product[] = [];
 
@@ -34,6 +36,7 @@ export const generateFakeProducts = (nb: number) => {
   return products;
 };
 
+/** Fonction utilitaire afin de générer un faux historique pour un utilisateur, peut être utilisé à des fin de tests comme de placeholder */
 export const generateFakeHistory = (nb: number) => {
   const history: HistoryEntry[] = [];
 
@@ -47,6 +50,7 @@ export const generateFakeHistory = (nb: number) => {
   return history;
 };
 
+/** Fonction utilitaire afin de crée un produit vide, et ce afin de mettre en place un "placeHolder" ou de créer un produit vide pour les formulaires */
 export const createEmptyProduct: () => Product = () => ({
   image: "https://via.placeholder.com/150",
   name: "",
@@ -54,6 +58,7 @@ export const createEmptyProduct: () => Product = () => ({
   stock: 0,
 });
 
+/** Fonction utilitaire afin de crée un membre vide, et ce afin de mettre en place un "placeHolder" ou de créer un membre vide pour les formulaires */
 export const createEmptyMember: () => Member = () => ({
   avatar: "https://via.placeholder.com/150",
   balance: 0,

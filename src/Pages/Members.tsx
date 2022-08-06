@@ -5,6 +5,7 @@ import MembersTable from "../Components/MemberTable";
 import { useAppSelector } from "../hook";
 import { membersSelector, selectedMember } from "../Model/MembersSlice";
 
+/** Page afin d'afficher les différents membres ainsi que leur informations, on y gère également le panier du membre */
 const MembersPage = () => {
   const members = useAppSelector(membersSelector);
   const member = useAppSelector(selectedMember);

@@ -25,6 +25,7 @@ import { productsSelector } from "../Model/ProductSlice";
 import { BasketEntry, Product } from "../Model/types";
 import NixModal from "./NixModal";
 
+/** Composant pour le panier de l'utilisateur */
 const Basket = () => {
   const opened = useSelector(isBasketOpenedSelector);
   const membres = useSelector(membersSelector);

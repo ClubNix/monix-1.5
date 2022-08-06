@@ -21,6 +21,7 @@ import { createEmptyMember } from "../utils";
 
 export type MembersTableProps = { members: Member[]; editmode?: boolean };
 
+/** Composant pour afficher la table des membres */
 const MembersTable = ({ members, editmode }: MembersTableProps) => {
   const [memberFilter, setMemberFilter] = useState("");
   const dispatch = useAppDispatch();

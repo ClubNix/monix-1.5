@@ -6,6 +6,7 @@ export type ProductProps = {
   product: Product;
 };
 
+/** Composant pour une carte de produits */
 const ProductCard = ({ product }: ProductProps) => {
   return (
     <Paper sx={{display: "flex", width: "30vw", margin:"10px"}}>

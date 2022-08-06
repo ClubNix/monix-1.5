@@ -37,6 +37,7 @@ const App = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <NixBar />
+      {/* Si le pattern est autre que les pages admins, on met à jour l'onglet séléctionné */}
       {!location.pathname.startsWith("/admin") && (
         <NixTabs
           tabs={Object.keys(configuredTabs)}
@@ -48,6 +49,7 @@ const App = () => {
         />
       )}
       <Routes>
+        {/* Les diférentes pages de l'appli sont définies ici */}
         <Route path="/" element={<div>Home Page (TODO)</div>} />
         <Route path="/membres" element={<MembersPage />} />
         <Route path="/catalogue" element={<CataloguePage />} />

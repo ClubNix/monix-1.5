@@ -6,6 +6,7 @@ export type NixTabsProps = {
   tabChange: (event: any, tabIndex: any) => void;
 };
 
+/** Wrapper pour un composant d'onglets */
 const NixTabs = ({ tabs, selectedTab, tabChange }: NixTabsProps) => {
   return (
     <>
