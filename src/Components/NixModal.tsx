@@ -1,6 +1,6 @@
 import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import * as React from "react";
 
 export type NixModalProps = {
   open: boolean;
@@ -19,7 +19,7 @@ const NixModal = ({
     <Modal open={open} onClose={onClose}>
       <Box
         sx={{
-          position: "absolute" as "absolute",
+          position: "absolute" as const,
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",

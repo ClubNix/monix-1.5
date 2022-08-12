@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NixBar from "./Components/NixBar";
 import NixTabs from "./Components/NixTabs";
@@ -18,7 +18,7 @@ const configuredTabs: { [tabId: string]: string } = {
 
 /** Permet de trouver l'id de la tab depuis son path */
 const findAssociatedTab = (path: string) => {
-  for (let key of Object.keys(configuredTabs)) {
+  for (const key of Object.keys(configuredTabs)) {
     if (configuredTabs[key] === path) return key;
   }
   return "";

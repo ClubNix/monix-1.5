@@ -49,7 +49,7 @@ const AdminWelcome = () => {
         </Box>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="h3">Historique de l'activité</Typography>
+        <Typography variant="h3">Historique de l&apos;activité</Typography>
         <Box
           sx={{
             display: "flex",

@@ -46,8 +46,8 @@ const Basket = () => {
 
   const addToBasket = (product: Product) => {
     const index = basket.findIndex((val) => val.product.id === product.id);
-    let amount = getTmpAmountForProduct(product);
-    let newBasket = [...basket];
+    const amount = getTmpAmountForProduct(product);
+    const newBasket = [...basket];
 
     //TODO: Mettre en place des messages d'erreurs (Feedback utilisateur)
     if (amount === 0 || amount > product.stock) return;
@@ -64,7 +64,7 @@ const Basket = () => {
   };
 
   const removeFromBasket = (product: Product) => {
-    let newBasket = [...basket];
+    const newBasket = [...basket];
     const index = newBasket.findIndex((val) => val.product.id === product.id);
     newBasket.splice(index, 1);
 
@@ -73,7 +73,7 @@ const Basket = () => {
 
   const updateBasketAmount = (product: Product, amount: number) => {
     const index = basket.findIndex((val) => val.product.id === product.id);
-    let newBasket = [...basket];
+    const newBasket = [...basket];
 
     if (amount > product.stock) return;
     const newbasketEntry: BasketEntry = { ...tmpAmount[index], amount };
@@ -84,7 +84,7 @@ const Basket = () => {
 
   const setTmpAmountForProduct = (product: Product, amount: number) => {
     const index = tmpAmount.findIndex((val) => val.product.id === product.id);
-    let newAmounts = [...tmpAmount];
+    const newAmounts = [...tmpAmount];
 
     //Si on a pas d'amount déjà set, on l'ajoute pour le produit
     if (index === -1) newAmounts.push({ product: product, amount: amount });

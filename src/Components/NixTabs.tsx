@@ -3,7 +3,7 @@ import { Box, Tabs, Tab } from "@mui/material";
 export type NixTabsProps = {
   tabs: string[];
   selectedTab: string | boolean;
-  tabChange: (event: any, tabIndex: any) => void;
+  tabChange: (event: React.SyntheticEvent<Element, Event>, tabIndex: string) => void;
 };
 
 /** Wrapper pour un composant d'onglets */
