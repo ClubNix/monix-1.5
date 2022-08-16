@@ -1,6 +1,6 @@
 import { TextField, InputAdornment } from "@mui/material";
 import { useState } from "react";
-import ProductCard from "../Components/ProductCard";
+import ProductCard from "../Components/ProductCard/ProductCard";
 import SearchIcon from "@mui/icons-material/Search";
 import { productsSelector } from "../Model/ProductSlice";
 import { useAppSelector } from "../hook";
@@ -13,7 +13,7 @@ const CataloguePage = () => {
     <>
       <div style={{ marginLeft: "3vw", marginTop: "10px" }}>
         <TextField
-          placeholder="Nom Produit"
+          placeholder="Nom du produit"
           value={productFilter}
           onChange={(evt) => setProductFilter(evt.currentTarget.value)}
           InputProps={{

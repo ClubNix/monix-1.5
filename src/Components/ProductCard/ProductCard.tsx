@@ -1,5 +1,6 @@
 import { Paper } from "@mui/material";
-import { Product } from "../Model/types";
+import { Product } from "../../Model/types";
+import "./ProductCard.css";
 
 export type ProductProps = {
   product: Product;
@@ -8,7 +9,7 @@ export type ProductProps = {
 /** Composant pour une carte de produits */
 const ProductCard = ({ product }: ProductProps) => {
   return (
-    <Paper sx={{ display: "flex", width: "30vw", margin: "10px" }}>
+    <Paper className="product-card">
       <img
         src={product.image}
         style={{ width: "50%", margin: "10px" }}
