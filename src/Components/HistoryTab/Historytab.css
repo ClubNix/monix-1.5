@@ -1,0 +1,13 @@
+.history-container {
+  border: 2px solid black;
+  overflow-y: scroll;
+  height: 90%;
+  margin: 10px;
+}
+
+.history-line {
+  border: 2px solid black;
+  padding: 3px;
+  margin: 2px;
+  width: auto !important;
+}

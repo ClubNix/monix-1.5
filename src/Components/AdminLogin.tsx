@@ -21,16 +21,7 @@ const AdminLogin = () => {
     dispatch(setTokenReducer(newToken));
   };
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        marginTop: "20px",
-      }}
-    >
+    <div className="column-container centered-items">
       <Typography variant="h2">Admin panel</Typography>
       <form onSubmit={loginCallback}>
         <TextField
@@ -56,7 +47,7 @@ const AdminLogin = () => {
         <br />
         <Button type="submit">Login</Button>
       </form>
-    </Box>
+    </div>
   );
 };
 

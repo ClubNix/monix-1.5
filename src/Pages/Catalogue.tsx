@@ -12,7 +12,7 @@ const CataloguePage = () => {
   const products = useAppSelector(productsSelector);
   return (
     <>
-      <Box sx={{ marginLeft: "3vw", marginTop: "10px" }}>
+      <div style={{ marginLeft: "3vw", marginTop: "10px" }}>
         <TextField
           placeholder="Nom Produit"
           value={productFilter}
@@ -25,22 +25,17 @@ const CataloguePage = () => {
             ),
           }}
         />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexFlow: "row wrap",
-          justifyContent: "space-evenly",
-          width: "100%",
-          marginTop: "20px",
-        }}
+      </div>
+      <div
+        className="row-container space-evenly-items"
+        style={{ flexWrap: "wrap", marginTop: "20px" }}
       >
         {products
           .filter((product) => product.name.includes(productFilter))
           .map((product) => (
             <ProductCard product={product} key={`product-${product.id}`} />
           ))}
-      </Box>
+      </div>
     </>
   );
 };

@@ -14,15 +14,7 @@ const AdminMembersPage = () => {
   const members = useAppSelector(membersSelector);
   const member = useAppSelector(selectedMember);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        width: "100%",
-        marginTop: "20px",
-      }}
-    >
+    <div className="row-container centered-items" style={{ marginTop: "20px" }}>
       {/* Tableau des membres */}
       <MembersTable members={members} editmode />
       {/* Si un membre est selectionné, il est affiché via ce composant (modal) */}
@@ -46,7 +38,7 @@ const AdminMembersPage = () => {
           }
         }}
       />
-    </Box>
+    </div>
   );
 };
 

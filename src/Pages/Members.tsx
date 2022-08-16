@@ -10,19 +10,11 @@ const MembersPage = () => {
   const members = useAppSelector(membersSelector);
   const member = useAppSelector(selectedMember);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        width: "100%",
-        marginTop: "20px",
-      }}
-    >
+    <div className="row-container centered-items" style={{ marginTop: "20px" }}>
       <MembersTable members={members} />
       <MemberCard member={member} />
       <Basket />
-    </Box>
+    </div>
   );
 };
 

@@ -26,15 +26,8 @@ const MembersTable = ({ members, editmode }: MembersTableProps) => {
   const [memberFilter, setMemberFilter] = useState("");
   const dispatch = useAppDispatch();
   return (
-    <Box sx={{ width: "80%" }}>
-      <Box
-        sx={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+    <div style={{ width: "80%" }}>
+      <div className="row-container centered-items space-between-items no-margin">
         <TextField
           sx={{ marginBottom: "20px" }}
           placeholder="Membre"
@@ -57,7 +50,7 @@ const MembersTable = ({ members, editmode }: MembersTableProps) => {
             Ajouter un membre
           </Button>
         )}
-      </Box>
+      </div>
 
       <Paper sx={{ overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: "60vh" }}>
@@ -121,7 +114,7 @@ const MembersTable = ({ members, editmode }: MembersTableProps) => {
           </Table>
         </TableContainer>
       </Paper>
-    </Box>
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ import {
   setSelectedProduct,
 } from "../Model/ProductSlice";
 import { Product } from "../Model/types";
-import NixModal from "./NixModal";
+import NixModal from "./NixModal/NixModal";
 
 export type ProductModalProps = {
   product?: Product;
@@ -52,29 +52,13 @@ const ProductModal = ({ product, callback }: ProductModalProps) => {
       >
         Supprimer le produit
       </Button>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
+      <div className="row-container space-evenly-items centered-items">
         <img
           src={product?.image}
-          style={{ width: "50%", margin: "10px" }}
+          style={{ width: "75%", margin: "10px" }}
           alt={`Produit '${product?.name}'`}
         />
-        <Box
-          sx={{
-            margin: "10px",
-            padding: "10px",
-            alignItems: "center",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <div className="column-container centered-items">
           <TextField
             value={modifiedProduct?.name}
             variant="standard"
@@ -122,8 +106,8 @@ const ProductModal = ({ product, callback }: ProductModalProps) => {
               } as Product)
             }
           />
-        </Box>
-      </Box>
+        </div>
+      </div>
     </NixModal>
   );
 };

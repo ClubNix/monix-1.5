@@ -6,7 +6,7 @@ export const generateFakeMembers = (nb: number) => {
   const members: Member[] = [];
 
   for (let i = 0; i < nb; i++) {
-    const history: HistoryEntry[] = generateFakeHistory(10);
+    const history: HistoryEntry[] = generateFakeHistory(30);
 
     members.push({
       id: i,

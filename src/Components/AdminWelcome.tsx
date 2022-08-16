@@ -2,33 +2,17 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../hook";
 import { globalHistorySelector } from "../Model/AdminSlice";
-import HistoryTab from "./HistoryTab";
+import HistoryTab from "./HistoryTab/HistoryTab";
 
 /** Composant pour l'affichage de la page d'accueil */
 const AdminWelcome = () => {
   const history = useAppSelector(globalHistorySelector);
   const navigate = useNavigate();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        marginTop: "20px",
-        height: "80vh",
-      }}
-    >
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="h3">Gestion Administrative</Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-            marginTop: "20px",
-            height: "100%",
-          }}
-        >
+    <div className="row-container" style={{ height: "80vh" }}>
+      <div style={{ flexGrow: 1 }}>
+        <h3>Gestion Administrative</h3>
+        <div className="column-container space-evenly-items">
           <Button
             variant="contained"
             sx={{ margin: "10px", height: "75px" }}
@@ -46,24 +30,15 @@ const AdminWelcome = () => {
           <Button variant="contained" sx={{ margin: "10px", height: "75px" }}>
             Modifier mot de passe
           </Button>
-        </Box>
-      </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="h3">Historique de l&apos;activité</Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            flexGrow: 1,
-            marginTop: "20px",
-            height: "100%",
-          }}
-        >
+        </div>
+      </div>
+      <div style={{ flexGrow: 1 }}>
+        <h3>Historique de l&apos;activité</h3>
+        <div className="column-container">
           <HistoryTab history={history} />
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

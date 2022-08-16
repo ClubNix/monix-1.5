@@ -1,6 +1,7 @@
 import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
+import "./NixModal.css";
 
 export type NixModalProps = {
   open: boolean;
@@ -17,23 +18,12 @@ const NixModal = ({
 }: React.PropsWithChildren<NixModalProps>) => {
   return (
     <Modal open={open} onClose={onClose}>
-      <Box
-        sx={{
-          position: "absolute" as const,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: size ? size.width : "40%",
-          height: size ? size.height : "50%",
-          bgcolor: "white",
-          border: "2px solid #000",
-          boxShadow: 24,
-          p: 4,
-          display: "flex",
-        }}
+      <div
+        className="nix-modal"
+        style={{ width: size?.width, height: size?.height }}
       >
         {children}
-      </Box>
+      </div>
     </Modal>
   );
 };

@@ -31,15 +31,7 @@ const AdminProductPage = () => {
   const products = useAppSelector(productsSelector);
   const selectedProduct = useAppSelector(selectedProductSelector);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-        marginTop: "20px",
-      }}
-    >
+    <div className="row-container centered-items" style={{ marginTop: "20px" }}>
       {/* Liste des produits */}
       <Box sx={{ width: "80%" }}>
         <Box
@@ -130,7 +122,7 @@ const AdminProductPage = () => {
           }
         }}
       />
-    </Box>
+    </div>
   );
 };
 

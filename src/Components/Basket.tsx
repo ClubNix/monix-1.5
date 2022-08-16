@@ -23,7 +23,7 @@ import {
 } from "../Model/MembersSlice";
 import { productsSelector } from "../Model/ProductSlice";
 import { BasketEntry, Product } from "../Model/types";
-import NixModal from "./NixModal";
+import NixModal from "./NixModal/NixModal";
 
 /** Composant pour le panier de l'utilisateur */
 const Basket = () => {
@@ -109,14 +109,11 @@ const Basket = () => {
       onClose={() => dispatch(closeBasket())}
       size={{ height: "70vh", width: "60vw" }}
     >
-      <Box sx={{ width: "100%", height: "100%" }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
+      <div style={{ width: "100%", height: "100%" }}>
+        <div
+          className="row-container centered-items space-between-items no-margin"
+          style={{
             height: "20%",
-            width: "100%",
-            alignItems: "center",
           }}
         >
           <Autocomplete
@@ -131,16 +128,16 @@ const Basket = () => {
             }))}
             renderInput={(params) => <TextField {...params} label="Membre" />}
           />
-          <Box>
+          <div>
             <Input
               type="password"
               sx={{ marginRight: "5px" }}
               placeholder="Code"
             />
             <Button>Validate</Button>
-          </Box>
-        </Box>
-        <Box>
+          </div>
+        </div>
+        <div>
           <TableContainer sx={{ height: "20vh" }}>
             <Table stickyHeader aria-label="Member table">
               <TableHead>
@@ -186,7 +183,7 @@ const Basket = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </Box>
+        </div>
         <hr style={{ borderTop: "2px solid black", borderRadius: "2px" }} />
         <Box>
           <TableContainer sx={{ height: "25vh" }}>
@@ -230,7 +227,7 @@ const Basket = () => {
             </Table>
           </TableContainer>
         </Box>
-      </Box>
+      </div>
     </NixModal>
   );
 };

@@ -8,8 +8,8 @@ import {
   setSelectedMembers,
 } from "../Model/MembersSlice";
 import { Member } from "../Model/types";
-import HistoryTab from "./HistoryTab";
-import NixModal from "./NixModal";
+import HistoryTab from "./HistoryTab/HistoryTab";
+import NixModal from "./NixModal/NixModal";
 
 export type MemberCardProps = {
   member?: Member;

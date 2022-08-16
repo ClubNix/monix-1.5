@@ -35,7 +35,7 @@ const App = () => {
   }, [location.pathname]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
       <NixBar />
       {/* Si le pattern est autre que les pages admins, on met à jour l'onglet séléctionné */}
       {!location.pathname.startsWith("/admin") && (
@@ -61,7 +61,7 @@ const App = () => {
         <Route path="/admin/membres" element={<AdminMembersPage />} />
         <Route path="/admin/products" element={<AdminProductPage />} />
       </Routes>
-    </Box>
+    </>
   );
 };
 
