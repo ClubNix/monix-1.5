@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { HistoryEntry } from "../../Model/types";
 import "./Historytab.css";
 

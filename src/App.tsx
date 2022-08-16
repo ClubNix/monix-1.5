@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NixBar from "./Components/NixBar";

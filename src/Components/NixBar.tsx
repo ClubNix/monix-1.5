@@ -1,5 +1,4 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import logo from "../assets/logos/logo-256_x_256.png";
 
 /** Navbar de l'application */

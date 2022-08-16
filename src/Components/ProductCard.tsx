@@ -1,5 +1,4 @@
 import { Paper } from "@mui/material";
-import { Box } from "@mui/system";
 import { Product } from "../Model/types";
 
 export type ProductProps = {

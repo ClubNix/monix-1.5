@@ -1,5 +1,4 @@
 import { TextField, InputAdornment } from "@mui/material";
-import { Box } from "@mui/system";
 import { useState } from "react";
 import ProductCard from "../Components/ProductCard";
 import SearchIcon from "@mui/icons-material/Search";

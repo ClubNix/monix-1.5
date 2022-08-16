@@ -1,4 +1,3 @@
-import { Box } from "@mui/system";
 import Basket from "../Components/Basket";
 import MemberCard from "../Components/MemberCard";
 import MembersTable from "../Components/MemberTable";

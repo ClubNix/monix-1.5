@@ -7,7 +7,6 @@ import {
   TableBody,
   Paper,
   InputAdornment,
-  Box,
   Avatar,
   TextField,
   Button,

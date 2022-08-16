@@ -1,4 +1,3 @@
-import { Box } from "@mui/system";
 import MemberCard from "../Components/MemberCard";
 import MembersTable from "../Components/MemberTable";
 import { useAppDispatch, useAppSelector } from "../hook";
